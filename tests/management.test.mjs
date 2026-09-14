@@ -1,0 +1,24 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+const base=process.env.TEST_ORIGIN||'http://localhost:3000';
+const post=(path,body,headers={})=>fetch(base+path,{method:'POST',headers:{'Content-Type':'application/json',...headers},body:JSON.stringify(body)});
+test('only the creator can delete a friend; public reads never expose ownership secrets',async()=>{
+ const created=await post('/api/maps',{nickname:'관리테스트',mbti:'ENFP'});
+ const cookie=created.headers.get('set-cookie');
+ assert.ok(cookie?.includes('HttpOnly'));
+ assert.ok(cookie.includes('SameSite=Strict'));
+ const ownerCookie=cookie.split(';')[0];
+ const {id}=await created.json();
+ const added=await(await post(`/api/maps/${id}/friends`,{nickname:'삭제테스트',mbti:'INTJ'})).json();
+ const friend=added.friends[0];
+ const endpoint=`/api/maps/${id}/friends/${friend.id}`;
+ assert.equal((await fetch(base+endpoint,{method:'DELETE'})).status,403);
+ assert.equal((await fetch(base+endpoint,{method:'DELETE',headers:{Cookie:'shystar_owner=invalid'}})).status,403);
+ assert.equal((await fetch(base+endpoint,{method:'DELETE',headers:{Cookie:ownerCookie,Origin:'https://untrusted.example'}})).status,403);
+ assert.equal((await fetch(base+endpoint,{method:'DELETE',headers:{Cookie:ownerCookie}})).status,200);
+ const publicData=await(await fetch(`${base}/api/maps/${id}`)).json();
+ assert.equal(publicData.friends.length,0);
+ assert.ok(!JSON.stringify(publicData).includes(ownerCookie.split('=')[1]));
+ assert.equal((await(await fetch(`${base}/api/maps/${id}/manage`)).json()).canManage,false);
+ assert.equal((await(await fetch(`${base}/api/maps/${id}/manage`,{headers:{Cookie:ownerCookie}})).json()).canManage,true);
+});

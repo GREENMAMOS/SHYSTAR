@@ -1,0 +1,4 @@
+# Copy to .dev.vars and enter your own TEST keys if payment testing is needed.
+TOSS_CLIENT_KEY=""
+TOSS_SECRET_KEY=""
+PAYMENTS_LIVE_ENABLED="false"

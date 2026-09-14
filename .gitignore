@@ -1,0 +1,59 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/.vinext/
+
+/out/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local environment
+.env*
+
+# deployment and generated files
+.vercel
+next-env.d.ts
+/dist/
+/.wrangler/
+/outputs/
+/work/
+
+.dev.vars*
+!.dev.vars.example
+
+# personal working notes (AI 작업 로그 — 앱 코드가 아니며 포트폴리오 공개 대상 아님)
+이어하기.md
+작업현황.md
+진행상태.md
+
+# Generated files and private credentials
+*.tsbuildinfo
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.pem
+*.key
+.env*
+.dev.vars*
+!.dev.vars.example

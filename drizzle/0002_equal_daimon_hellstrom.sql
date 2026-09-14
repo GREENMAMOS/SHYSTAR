@@ -1,0 +1,1 @@
+ALTER TABLE `friends` ADD `relationship` text;

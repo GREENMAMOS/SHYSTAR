@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+const origin=process.env.TEST_ORIGIN||'http://localhost:3000';
+const post=(path,body)=>fetch(origin+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+test('friends persist, rank by chemistry, and concurrent duplicate submissions add only once',async()=>{
+ const map=await (await post('/api/maps',{nickname:'친구테스트',mbti:'ENFP'})).json();
+ const path=`/api/maps/${map.id}/friends`;
+ const first=await post(path,{nickname:'하루',mbti:'ISTP'});
+ assert.equal(first.status,201);
+ const repeated=await Promise.all([post(path,{nickname:'윤슬',mbti:'INFJ'}),post(path,{nickname:'윤슬',mbti:'INFJ'})]);
+ assert.deepEqual(repeated.map(x=>x.status).sort(),[201,409]);
+ const saved=await (await fetch(`${origin}/api/maps/${map.id}`)).json();
+ assert.equal(saved.friends.length,2);
+ assert.equal(saved.ranking.length,2);
+ assert.ok(saved.ranking[0].score>=saved.ranking[1].score);
+ assert.ok(saved.ranking.every(x=>x.category.label&&x.rank>=1));
+ const page=await fetch(`${origin}/m/${map.id}`);
+ assert.equal(page.status,200);
+ const html=await page.text();assert.ok(html.includes('윤슬')&&html.includes('하루'));
+ assert.equal((await post(path,{nickname:' ',mbti:'XXXX'})).status,400);
+ assert.equal((await post('/api/maps/00000000-0000-4000-8000-000000000000/friends',{nickname:'별',mbti:'ENFP'})).status,404);
+});

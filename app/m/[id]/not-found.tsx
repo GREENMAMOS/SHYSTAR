@@ -1,0 +1,1 @@
+export default function MissingMap(){return <main className="loading-page"><div><h1>지도를 찾을 수 없어요.</h1><p className="muted">주소를 확인하거나 새 지도를 만들어 주세요.</p><a className="secondary" href="/">새 지도 만들기</a></div></main>;}

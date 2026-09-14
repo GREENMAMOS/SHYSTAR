@@ -1,0 +1,15 @@
+{
+  "name": "shystar",
+  "main": "vinext/server/fetch-handler",
+  "compatibility_date": "2026-09-14",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shystar-db",
+      "database_id": "510808d2-9356-4324-b947-de9ffdbf14a1",
+      "migrations_dir": "drizzle"
+    }
+  ]
+}
