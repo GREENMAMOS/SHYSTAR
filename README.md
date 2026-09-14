@@ -52,7 +52,7 @@ flowchart LR
 | --- | --- |
 | 화면 | React 19, TypeScript, 반응형 CSS, shadcn/Base UI |
 | 애플리케이션 | Vinext, Vite, App Router 형식의 페이지·API 구성 |
-| 실행·호스팅 | Sites, Cloudflare Workers 기반 실행 환경 |
+| 실행·호스팅 | Cloudflare Workers 기반 실행 환경 |
 | 데이터 | Cloudflare D1, Drizzle 스키마·마이그레이션, 매개변수화한 SQL |
 | 결제 | 토스페이먼츠 V2 SDK 및 서버 결제 승인·조회 API |
 | 검증 | Node.js 테스트 러너, 격리 SQLite·모의 결제사 테스트, 타입 검사, 빌드 |
