@@ -41,7 +41,7 @@ next-env.d.ts
 .dev.vars*
 !.dev.vars.example
 
-# personal working notes (AI 작업 로그 — 앱 코드가 아니며 포트폴리오 공개 대상 아님)
+# personal working notes
 이어하기.md
 작업현황.md
 진행상태.md
