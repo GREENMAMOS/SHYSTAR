@@ -33,14 +33,15 @@ node --test tests/maps.test.mjs tests/friends.test.mjs tests/management.test.mjs
 ```
 
 타입 검사와 빌드:
-
-```sh
-npx tsc --noEmit --allowImportingTsExtensions
 npm run build
-```
-
+npx wrangler deploy --config ./dist/server/wrangler.json
 ## 배포와 검증 범위
 
 `.openai/hosting.json`에는 로컬 DB 바인딩만 남겼습니다. 원본 사이트의 project_id는 제거했습니다. 다른 환경에서 배포하려면 본인의 Sites 프로젝트 및 런타임 설정이 필요합니다. GitHub에 코드를 올리는 것만으로 서비스가 새로 배포되지는 않습니다.
+
+```sh
+npm run build
+npx wrangler deploy --config ./dist/server/wrangler.json
+```
 
 기존 프로젝트에서의 테스트 기록은 README에 정리했습니다. 이 복사본을 대상으로 새 의존성 설치와 전체 실행을 다시 수행한 것은 아닙니다. 설치 도구의 버전·플랫폼 정책에 따른 추가 설정이 필요할 수 있습니다.
