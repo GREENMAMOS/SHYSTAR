@@ -4,8 +4,8 @@
 
 별명과 MBTI로 나만의 지도를 만들고, 친구가 공유 링크로 참여하면 케미 점수와 순위가 갱신됩니다. 무료 지도에서 생긴 궁금증을 990원 단건 상세 분석으로 연결하는 MVP를 구현했습니다.
 
-- [공개 서비스](https://shystar.hek36.chatgpt.site)
-- [상세 분석 샘플](https://shystar.hek36.chatgpt.site/analysis-sample)
+- [공개 서비스](https://shystar.greenmamos.workers.dev/)
+- [상세 분석 샘플](https://shystar.greenmamos.workers.dev/analysis-sample)
 - 프로젝트 형태: AI 보조 개발을 활용한 개인 풀스택 웹서비스 프로젝트
 - 기록 기준: 2026년 9월 14일 작업 현황
 - 운영 단계: 공개 MVP 및 테스트 결제 검증. 실제 대금 청구·매출 검증은 아직 진행하지 않았습니다.
